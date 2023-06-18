@@ -1,0 +1,83 @@
+
+  gge{
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .home{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background:url(ignacio-correia-1_yycyoMT6g-unsplash.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    text-align:right;
+  }
+  
+  .home .content{
+    max-width: 60rem;
+    text-align:right;
+  }
+  
+  .home .content h3{
+    font-size: 6rem;
+    text-transform: uppercase;
+    color:#fff;
+  }
+  
+  .home .content p{
+    font-size: 2rem;
+    font-weight: lighter;
+    line-height: 1.8;
+    padding:1rem 0;
+    color:#eee;
+    text-align:right;
+  }
+  .header.share{
+    color:var(--main-color);
+      border-bottom: .1rem solid var(--main-color);
+      padding-bottom: .5rem;
+  }
+  .container {
+    position: relative;
+  width: 100%;
+    max-width: 300px;
+     padding:30px;
+     clear:both;
+     display: inline-block;
+     clear: both;
+  }
+  
+  .image {
+    display: block;
+    width: 100%;
+  
+    height:400px;
+  }
+  
+  .overlay {
+    position:absolute; 
+    bottom: 0; 
+    background: rgba(0, 0, 0, 0.603);
+    width: 72.5%;
+    transition: .5s ease;
+    opacity:0;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+    text-decoration:solid;
+    display: inline-block;
+  
+  }
+  
+  .container:hover .overlay {
+    opacity: 1;
+  
+  }
+  
+  .t{
+    color: #ffffff96;
+  }
