@@ -1,115 +1,116 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Bardis</title>
-	<link rel="stylesheet" type="text/css" href="home.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="stylesheet" href="path/to/bootstrap.min.css">
+	<title>Customers Login Form</title>
+	<link rel="stylesheet" type="text/css" href="login.css">
+	<script type="module" src="./module-file.js"></script>
+	<!-- include the Firebase SDK -->
+	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-storage.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebase/init.js"></script>
 </head>
+
 <body>
-	
+	<h1>Customers Login Form</h1>
 
+	<form id="customers-form">
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" required>
 
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password" required>
 
-<!-- Navigation Bar -->
-<header>
-	<h1>منتجات وخدمات زراعية</h1>
-	<nav>
-    
-		<ul>
-			<li><a href=index.html>الرئيسية</a></li>
-			<li><a href=About.html>اعرف عنا</a></li>
-			<li><a href=sall.html>منتجاتنا</a></li>
+		<button type="submit" id="submit">Submit</button>
+		<label>if you dont have email follow link<a href="n.html">Registration</a></label>
 
-			<a href="https://www.facebook.com/profile.php?id=100063865183109" target=_blank class="fab fa-facebook-f"><img src="Facebook_Logo_(2019).png" width="50"></a>
-            <a href="https://wa.me/+201091363695" target=_blank class="fab fa-whatsapp"> <img src="whlogo.png"width="50"></a>
-		</ul>
-	</nav>
-</header>
-<section class="home" id="home">
-    
-  <div class="content">
-      <h3>مشتل بارادايس</h3>
-      <p>.مشتلنا يضمن لك جودة المنتج</p>
-  </div>
+		<!-- زر تسجيل الدخول باستخدام Gmail -->
+		<button type="button" id="gmail-login" onclick="loginWithGmail()">Login with Gmail</button>
+	</form>
 
-</section>
-<h1>معلومات عن النباتات المتوفرة</h1>
-<section class="flo" id="flo">
-    <div class="container">
-        <img src="اراولا.jpg" alt="Avatar"class="image" >
-        <div class="overlay">   
-           <a class="gge" extends ParentClass {super()} href="arola.html" target="_blank" style="text-decoration: solid;">
-          <div class="t"> اراولا</div></a>
-        </div>
-        </div>
-      
-          <div class="container">
-        <img src="ايفوربيا دم الغزال.jpg" alt="Avatar" class="image" >
-        <div class="overlay"> ايفوربيا دم الغزال </div>
-        </div>
-                <div class="container">
-                    <img src="باتونيا 2.jpg" alt="Avatar" class="image" >
-                    <div class="overlay">   
-                      <a class="gge" extends ParentClass {super()} href="a.html" target="_blank" style="text-decoration: solid;">
-                     <div class="t"> باتونيا</div></a>
-                   </div>
-                   </div>
-                 
-                    <div class="container">
-                        <img src="دافنباخيا.jpg" alt="Avatar" class="image" >
-                        <div class="overlay">   
-                          <a class="gge" extends ParentClass {super()} href="c.html" target="_blank" style="text-decoration: solid;">
-                         <div class="t"> افنباخيا</div></a>
-                       </div>
-                       </div>
-                       
-                        <div class="container">
-                            <img src="سلفيا.jpg" alt="Avatar" class="image">
-                            <div class="overlay">   
-                              <a class="z" extends ParentClass {super()} href="b.html" target="_blank" style="text-decoration: solid;">
-                             <div class="t"> سلفيا</div></a>
-                           </div>
-                           </div>
-                           
-                            <div class="container">
-                                <img src="قرنفل صيني.jpg" alt="Avatar" class="image" >
-                                <div class="overlay">قرنفل صيني</div>
-                              </div>
-                                <div class="container">
-                                    <img src="قرنفل صيني2.jpg" alt="Avatar" class="image" >
-                                    <div class="overlay">قرنفل صيني</div>
-                                  </div>
-                                    <div class="container">
-                                        <img src="قطيفه اصفر.jpg" alt="Avatar" class="image" >
-                                        <div class="overlay">قطيفه اصفر</div>
-                                      </div>
-                                        <div class="container">
-                                            <img src="قطيفه بينك.jpg" alt="Avatar" class="image" >
-                                            <div class="overlay">قطيفه بينك</div>
-                                          </div>
-                                            <div class="container">
-                                                <img src="كلانشو.jpg" alt="Avatar" class="image" >
-                                                <div class="overlay">كلانشو</div>
-                                              </div>
-                                                <div class="container">
-                                                    <img src="منثور ابيض وموف وبينك.jpg" alt="Avatar" class="image" >
-                                                    <div class="overlay">منثور ابيض وموف وبينك</div>
-                                                  </div>
-                                                    <div class="container">
-                                                        <img src="منثور ابيض.jpg" alt="Avatar" class="image" >
-                                                        <div class="overlay">منثور ابيض</div>
-                                                      </div>
-                                                  
-</section>
+	<script>
+		// Update Firebase Configurations and Database Name
+		var firebaseConfig = {
+			apiKey: "AIzaSyBXLhnKuTXRFX5PkjaR7m1d8H-_s1UQjrM",
+			authDomain: "para-fdf7c.firebaseapp.com",
+			databaseURL: "https://para-fdf7c-default-rtdb.firebaseio.com",
+			projectId: "para-fdf7c",
+			storageBucket: "para-fdf7c.appspot.com",
+			messagingSenderId: "1098599277771",
+			appId: "1:1098599277771:web:417daeb561bb13e453274e",
+			measurementId: "G-SZCCFG0GK8"
+		};
+		firebase.initializeApp(firebaseConfig);
 
-<footer>
-	<p>جميع الحقوق محفوظة &copy; 2021</p>
-	<p>للتواصل معنا: ahmed7gendy@gmail.com</p>
-</footer>
+		// Get a reference to the database service and specify the database name
+		var database = firebase.database().ref('para');
+
+		// Get the customers login form
+		var form = document.getElementById("customers-form");
+
+		// Add an event listener to the form
+		form.addEventListener("submit", function (event) {
+			event.preventDefault();
+
+			// Get the customers data from the form
+			var email = form.elements["email"].value;
+			var password = form.elements["password"].value;
+
+			// Sign in the customer with Firebase Authentication
+			firebase.auth().signInWithEmailAndPassword(email, password)
+				.then(function (userCredential) {
+					// Redirect to the index.html upon successful login
+					window.location.href = "index.html";
+
+					// Clear the form
+					form.reset();
+				})
+				.catch(function (error) {
+					// Handle errors during login
+					var errorCode = error.code;
+					var errorMessage = error.message;
+					if (errorCode === 'auth/wrong-password') {
+						alert('كلمة السر خاطئة.');
+					} else if (errorCode === 'auth/user-not-found') {
+						alert('المستخدم غير موجود.');
+					} else {
+						alert(errorMessage);
+					}
+				});
+		});
+
+		// إضافة دالة لتسجيل الدخول باستخدام Gmail
+		function loginWithGmail() {
+			var provider = new firebase.auth.GoogleAuthProvider();
+			firebase.auth().signInWithPopup(provider)
+				.then(function (result) {
+					// عند نجاح تسجيل الدخول
+					var user = result.user;
+
+					// حفظ بيانات المستخدم في قاعدة البيانات
+					var userData = {
+						email: user.email,
+						displayName: user.displayName,
+						uid: user.uid
+					};
+
+					database.push(userData); // تحفظ البيانات في القاعدة
+
+					console.log(user);
+					// قم بتنفيذ الإجراءات الخاصة بك أو إعادة توجيه المستخدم
+					window.location.href = "index.html";
+				})
+				.catch(function (error) {
+					// في حالة حدوث خطأ
+					var errorCode = error.code;
+					var errorMessage = error.message;
+					alert(errorMessage);
+				});
+		}
+	</script>
 </body>
-<script src="script.js">
-</script>
-
 
 </html>
